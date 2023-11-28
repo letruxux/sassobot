@@ -9,7 +9,6 @@ from youtube_search import AsyncYoutubeSearch
 from validators import url as validate
 from common import addots, dEmbed, emojis, serverSession
 
-DEV_TOKEN = ""
 LIVE_TOKEN = ""
 INVITE = ""
 SUPPORT_SERVER = ""
