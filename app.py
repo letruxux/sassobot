@@ -7,11 +7,8 @@ from checks import Checks
 from yt_dlp import DownloadError
 from youtube_search import AsyncYoutubeSearch
 from validators import url as validate
-from common import addots, dEmbed, emojis, serverSession
-
-LIVE_TOKEN = ""
-INVITE = ""
-SUPPORT_SERVER = ""
+from common import addots, dEmbed, serverSession
+from settings import INVITE, SUPPORT_SERVER, TOKEN
 
 sessions = {}
 
@@ -259,4 +256,4 @@ async def on_ready():
     print(INVITE)
 
 
-bot.run(LIVE_TOKEN)
+bot.run(TOKEN)

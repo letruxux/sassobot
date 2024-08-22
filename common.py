@@ -2,7 +2,7 @@ import discord
 from typing import Any, Dict, List
 from datetime import datetime
 from discord import Color as c
-from enum import Enum
+from settings import DEEZER_EMOJI, YOUTUBE_EMOJI, SOUNDCLOUD_EMOJI
 from urllib.parse import urlparse
 from json import dump
 
@@ -17,11 +17,9 @@ class Platform:
 
 class platforms:
     Unknown = Platform("Unknown", ":question:", "")
-    YouTube = Platform("YouTube", "<:yt:1100476101257601035>", "https://youtu.be/")
-    Soundcloud = Platform(
-        "Soundcloud", "<:sc:1138784426776596520>", "https://soundcloud.com/"
-    )
-    Deezer = Platform("Deezer", "<:dz:1138785032618647583>", "https://deezer.com/")
+    YouTube = Platform("YouTube", YOUTUBE_EMOJI, "https://youtu.be/")
+    Soundcloud = Platform("Soundcloud", SOUNDCLOUD_EMOJI, "https://soundcloud.com/")
+    Deezer = Platform("Deezer", DEEZER_EMOJI, "https://deezer.com/")
 
 
 def getPlatform(url: str) -> Platform:
@@ -31,6 +29,7 @@ def getPlatform(url: str) -> Platform:
     if parsed.hostname.endswith("deezer.page.link") or parsed.hostname.endswith(
         "deezer.com"
     ):
+        # TODO: implement deezer
         pass  # return platforms.Deezer
     if parsed.hostname.endswith("soundcloud.com"):
         return platforms.Soundcloud
@@ -135,7 +134,3 @@ class dEmbed(discord.Embed):
         return super().set_footer(
             text=f"{text} | developed by @letruxux", icon_url=icon_url
         )
-
-
-class emojis:
-    yt = "<:yt:1100476101257601035>"
