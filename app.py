@@ -176,6 +176,15 @@ async def play(ctx: commands.Context, *, prompt):
                 ),
                 view=None,
             )
+        if player.duration > 60 * 75:
+            return await msg.edit(
+                embed=dEmbed(
+                    color=c.red(),
+                    title="Errore...",
+                    description="Quel video è troppo lungo! (max: 75m)",
+                ),
+                view=None,
+            )
     except DownloadError:
         return await msg.edit(
             embed=dEmbed(
