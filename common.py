@@ -38,8 +38,6 @@ def getPlatform(url: str) -> Platform:
 
 class basicVideoInfo:
     def __init__(self, url: str, info: Dict, source) -> None:
-        with open("porcazo.json", "w", encoding="utf-8") as f:
-            dump(info, f)
         self.url: str = url
         self.platform: Platform = getPlatform(url)
         self.title: str = info.get("title")
