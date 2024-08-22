@@ -2,6 +2,8 @@ import discord
 import yt_dlp as youtube_dl
 import asyncio
 from common import basicVideoInfo
+from settings import DEBUG
+import json
 
 YTDL_OPTIONS = {
     "format": "bestaudio/best",
@@ -38,8 +40,12 @@ class YTDLSource(discord.PCMVolumeTransformer):
     @classmethod
     async def from_url(cls, url, *, loop=None, stream=True, download=False):
         loop = loop or asyncio.get_event_loop()
-        a = ytdl.extract_info(url, download=download)
-        data = await loop.run_in_executor(None, lambda: a)
+        data = await loop.run_in_executor(
+            None, lambda: ytdl.extract_info(url, download=download)
+        )
+
+        if DEBUG:
+            open("debug.json", "w", encoding="utf-8").write(json.dumps(data))
 
         if "entries" in data:
             # take first item from a playlist
@@ -50,4 +56,4 @@ class YTDLSource(discord.PCMVolumeTransformer):
         def getSource():
             return cls(discord.FFmpegPCMAudio(filename, **FFMPEG_OPTIONS), data=data)
 
-        return basicVideoInfo(url, a, getSource)
+        return basicVideoInfo(url, data, getSource)

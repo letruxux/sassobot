@@ -14,3 +14,5 @@ INVITE = "https://discord.com/"
 SUPPORT_SERVER = "https://discord.gg/"
 
 TOKEN = __get_token()
+
+DEBUG = False
