@@ -8,8 +8,7 @@ from yt_dlp import DownloadError
 from youtube_search import AsyncYoutubeSearch
 from validators import url as validate
 from common import addots, dEmbed, serverSession
-from settings import INVITE, SUPPORT_SERVER, TOKEN, DEBUG
-import os
+from settings import INVITE, SUPPORT_SERVER, TOKEN
 
 sessions = {}
 
@@ -154,7 +153,7 @@ async def play(ctx: commands.Context, *, prompt):
 
         async def callback(i: discord.Interaction):
             await i.response.defer()
-            await i.followup.send(":thumbsup:", ephemeral=True)
+            await i.followup.send("Downloading media...", ephemeral=True)
             view.stop()
 
         dropdown.callback = callback
