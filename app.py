@@ -8,10 +8,13 @@ from yt_dlp import DownloadError
 from youtube_search import AsyncYoutubeSearch
 from validators import url as validate
 from common import addots, dEmbed, serverSession
-from settings import INVITE, SUPPORT_SERVER, TOKEN
+from settings import INVITE, SUPPORT_SERVER, TOKEN, DEBUG
+import os
 
 sessions = {}
 
+if DEBUG:
+    os.system("git pull")
 
 bot = commands.Bot(
     commands.when_mentioned_or("--"),
