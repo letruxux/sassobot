@@ -13,9 +13,6 @@ import os
 
 sessions = {}
 
-if DEBUG:
-    os.system("git pull")
-
 bot = commands.Bot(
     commands.when_mentioned_or("--"),
     help_command=None,
