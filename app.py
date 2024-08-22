@@ -26,14 +26,10 @@ working = False
 
 
 async def devJoin(channel: discord.VoiceChannel):
-    try:
-        if channel.guild.voice_client:
-            await channel.guild.voice_client.disconnect()
-        await channel.connect()
-        sessions[channel.guild.id] = serverSession(channel.guild, bot)
-        return True
-    except:
-        return False
+    if channel.guild.voice_client:
+        await channel.guild.voice_client.disconnect()
+    await channel.connect(self_deaf=True)
+    sessions[channel.guild.id] = serverSession(channel.guild, bot)
 
 
 @bot.command(aliases=["invito", "link", "Invito", "Invite", "Link"])
@@ -256,4 +252,8 @@ async def on_ready():
     print(INVITE)
 
 
-bot.run(TOKEN)
+try:
+    bot.run(TOKEN)
+except KeyboardInterrupt:
+    print("Bot stopped.")
+    exit()
