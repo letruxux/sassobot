@@ -9,7 +9,11 @@ it uses unofficial external apis so it may stop working at anytime. just remembe
 ## install
 
 ```
+# assuming you have both python and git installed
 > git clone https://github.com/letruxux/sassobot
 > cd sassobot
 > python -m pip install -r requirements.txt
+
+# to start the bot
+> python main.py
 ```
